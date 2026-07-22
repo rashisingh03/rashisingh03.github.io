@@ -20,23 +20,14 @@ const highlightObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const id = entry.target.getAttribute('id');
-
       tabLinks.forEach(link => {
-        link.classList.toggle(
-          'active',
-          link.getAttribute('href') === `#${id}`
-        );
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
       });
     }
   });
-}, {
-  rootMargin: '-40% 0px -50% 0px',
-  threshold: 0
-});
+}, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
 
-sections.forEach(section => {
-  highlightObserver.observe(section);
-});
+sections.forEach(section => highlightObserver.observe(section));
 
 // ===== Reveal on scroll =====
 const revealObserver = new IntersectionObserver((entries) => {
@@ -46,17 +37,10 @@ const revealObserver = new IntersectionObserver((entries) => {
       revealObserver.unobserve(entry.target);
     }
   });
-}, {
-  threshold: 0.12
-});
+}, { threshold: 0.12 });
 
-sections.forEach(section => {
-  revealObserver.observe(section);
-});
+sections.forEach(section => revealObserver.observe(section));
 
 // ===== Footer year =====
 const yearEl = document.getElementById('year');
-
-if (yearEl) {
-  yearEl.textContent = new Date().getFullYear();
-}
+if (yearEl) yearEl.textContent = new Date().getFullYear();
